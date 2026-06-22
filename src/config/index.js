@@ -1,0 +1,18 @@
+require('dotenv').config();
+
+const DISCORD_TOKEN = process.env.DISCORD_TOKEN;
+const SPOTIFY_CLIENT_ID = process.env.SPOTIFY_CLIENT_ID;
+const SPOTIFY_CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET;
+const SPOTIFY_REDIRECT_URI = process.env.SPOTIFY_REDIRECT_URI || 'http://127.0.0.1:8888/callback';
+
+const MIN_UPDATE_INTERVAL = 2500;
+const JITTER_MAX = 1200;
+
+module.exports = {
+  DISCORD_TOKEN,
+  SPOTIFY_CLIENT_ID,
+  SPOTIFY_CLIENT_SECRET,
+  SPOTIFY_REDIRECT_URI,
+  MIN_UPDATE_INTERVAL,
+  JITTER_MAX,
+};
