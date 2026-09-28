@@ -7,6 +7,12 @@ const colors = {
   '2': { name: 'Cian Neón', func: chalk.cyanBright },
   '3': { name: 'Verde Matrix', func: chalk.greenBright },
   '4': { name: 'Rosa Fucsia', func: chalk.magentaBright },
+  '5': { name: 'Rojo', func: chalk.redBright },
+  '6': { name: 'Amarillo', func: chalk.yellowBright },
+  '7': { name: 'Azul', func: chalk.blueBright },
+  '8': { name: 'Blanco', func: chalk.white },
+  '9': { name: 'Negro', func: chalk.black },
+  '10': { name: 'Gris', func: chalk.gray },
 };
 
 const rainbowColors = [chalk.red, chalk.yellow, chalk.green, chalk.cyan, chalk.blue, chalk.magenta];
