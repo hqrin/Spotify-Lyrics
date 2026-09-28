@@ -14,6 +14,7 @@ let lastUpdateTime = 0;
 let selectedMode = '1';
 let selectedColor = '1';
 let selectedFont = 'Standard';
+let lastLoopError = '';
 let settings = {
   translationEnabled: false,
   targetLanguage: 'es',
@@ -138,8 +139,13 @@ async function mainLoop() {
         drawLargeLyrics({ song: 'Paused', author: '---', progress: '0:00', lyrics: '' }, selectedColor, selectedFont);
       }
     }
+    lastLoopError = '';
   } catch (error) {
-    // Silence errors to keep the loop alive.
+    const message = error.message || 'Error desconocido';
+    if (message !== lastLoopError) {
+      console.error(`\n  Error actualizando la reproducción: ${message}`);
+      lastLoopError = message;
+    }
   }
 
   setTimeout(mainLoop, 500);
