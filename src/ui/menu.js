@@ -58,18 +58,24 @@ async function askMode(currentSettings) {
 }
 
 async function askFont() {
+  const fonts = [
+    'Standard', 'Big', 'Mini', 'Small', 'Slant', 'Digital',
+    'Doom', 'Block', 'Shadow', 'Script', 'Banner', 'Speed',
+  ];
+
   while (true) {
     console.clear();
     printHeader();
     console.log(chalk.bold.white('\n  ---  ELIGE UN ESTILO ---'));
-    console.log(chalk.cyan('  [01]') + ' Standard');
-    console.log(chalk.cyan('  [02]') + ' Big');
-    console.log(chalk.cyan('  [03]') + ' Mini');
+    fonts.forEach((font, index) => {
+      console.log(chalk.cyan(`  [${String(index + 1).padStart(2, '0')}]`) + ` ${font}`);
+    });
 
     const answer = await ask('\n  > ');
-    if (answer === '2' || answer === '02') return 'Big';
-    if (answer === '3' || answer === '03') return 'Mini';
-    return 'Standard';
+    const selectedIndex = Number(answer) - 1;
+    if (Number.isInteger(selectedIndex) && fonts[selectedIndex]) return fonts[selectedIndex];
+    console.log(chalk.red('  Estilo no válido. Intenta de nuevo.'));
+    await new Promise((resolve) => setTimeout(resolve, 800));
   }
 }
 
@@ -82,11 +88,17 @@ async function askColor() {
     console.log(chalk.cyan('  [02]') + ' Cian Neón');
     console.log(chalk.cyan('  [03]') + ' Verde Matrix');
     console.log(chalk.cyan('  [04]') + ' Rosa Fucsia');
-
+    console.log(chalk.cyan('  [05]') + ' Rojo');
+    console.log(chalk.cyan('  [06]') + ' Amarillo');
+    console.log(chalk.cyan('  [07]') + ' Azul');
+    console.log(chalk.cyan('  [08]') + ' Blanco');
+    console.log(chalk.cyan('  [09]') + ' Negro');
+    console.log(chalk.cyan('  [10]') + ' Gris');
 
     const answer = await ask('\n  > ');
     const normalized = answer.replace(/^0+/, '') || '1';
-    if (['1', '2', '3', '4'].includes(normalized)) return normalized;
+    if (['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'].includes(normalized)) return normalized;
+    console.log(chalk.red('  Color no válido. Intenta de nuevo.'));
   }
 }
 
